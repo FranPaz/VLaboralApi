@@ -29,15 +29,20 @@ namespace VLaboralApi.Controllers
 
         // GET: api/Ofertas/5
         [ResponseType(typeof(Oferta))]
+       
         public IHttpActionResult GetOferta(int id)
         {
-            Oferta oferta = db.Ofertas.Find(id);
-            if (oferta == null)
+            //Oferta oferta = db.Ofertas.Find(id);
+            var ofertaEmpleador = (from e in db.Ofertas
+                                   where e.EmpleadorId == id
+                                   select e);
+            
+            if (ofertaEmpleador == null)
             {
                 return NotFound();
             }
 
-            return Ok(oferta);
+            return Ok(ofertaEmpleador);
         }
 
         // PUT: api/Ofertas/5
