@@ -19,6 +19,11 @@ namespace VLaboralApi.Controllers
         // GET: api/Ofertas
         public IQueryable<Oferta> GetOfertas()
         {
+            Oferta of = db.Ofertas
+                .Include(e => e.Empleador)
+                .Include(p => p.Puestos)
+                .FirstOrDefault();
+            
             return db.Ofertas;
         }
 
