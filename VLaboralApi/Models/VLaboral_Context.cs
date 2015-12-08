@@ -14,7 +14,7 @@ namespace VLaboralApi.Models
 {
     public class VLaboral_Context : IdentityDbContext<ApplicationUser> // DbContext
     {
-        public VLaboral_Context() : base("VLaboral_Context")
+        public VLaboral_Context() : base("VLaboral_Context", throwIfV1Schema: false)
         {
             this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;

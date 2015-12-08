@@ -18,7 +18,8 @@ namespace VLaboralApi.Models
         // GET: api/SubRubros
         public IQueryable<SubRubro> GetSubRubros()
         {
-            return db.SubRubros;
+            return db.SubRubros
+                .Include(a => a.Puestos);
         }
 
         // GET: api/SubRubros/5

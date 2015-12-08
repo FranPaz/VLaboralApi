@@ -19,7 +19,9 @@ namespace VLaboralApi.Controllers
         // GET: api/Puestos
         public IQueryable<Puesto> GetPuestoes()
         {
-            return db.Puestos;
+            return db.Puestos
+                .Include(sub => sub.SubRubros)
+                .Include(o => o.Oferta);
         }
 
         // GET: api/Puestos/5

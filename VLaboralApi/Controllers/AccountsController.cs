@@ -116,9 +116,16 @@ namespace VLaboralApi.Controllers
 
             IdentityResult result = await this.AppUserManager.ConfirmEmailAsync(userId, code);
 
-            if (result.Succeeded)
+            if (result.Succeeded) //fpaz: agrego la funcion para que la url que se manda en el email de confirmacion redirija a la pagina de confirmacion de cuenta
             {
-                return Ok();
+                IHttpActionResult response;
+                //we want a 303 with the ability to set location
+                HttpResponseMessage responseMsg = new HttpResponseMessage(HttpStatusCode.RedirectMethod);
+                //seteo la url a la que voy a redirigir y capturar en el frontend
+                //responseMsg.Headers.Location = new Uri("http://localhost:12157/#/seguridad/confirm/" ); // para desarrollo
+                responseMsg.Headers.Location = new Uri("http://vlaboral-test.azurewebsites.net/#/seguridad");
+                response = ResponseMessage(responseMsg);
+                return response;
             }
             else
             {

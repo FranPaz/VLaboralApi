@@ -28,11 +28,11 @@ namespace VLaboralApi.Migrations
 
             var user = new ApplicationUser()
             {
-                UserName = "Fran",
-                Email = "francisco_paz3@hotmail.com",
+                UserName = "Administrador",
+                Email = "overcode_dev@outlook.com",
                 EmailConfirmed = true,
-                FirstName = "Francisco",
-                LastName = "Paz",
+                FirstName = "Administrador",
+                LastName = "Administrador",
                 Level = 1,
                 JoinDate = DateTime.Now.AddYears(-3),
                 Empleador = new Empleador { Cuit = "123", Rsocial = "Empleador 1", Descripcion = "Empleador de prueba 1" },
@@ -47,7 +47,7 @@ namespace VLaboralApi.Migrations
                 roleManager.Create(new IdentityRole { Name = "User" });
             }
 
-            var adminUser = manager.FindByName("Fran");
+            var adminUser = manager.FindByName("Administrador");
 
             manager.AddToRoles(adminUser.Id, new string[] { "SuperAdmin", "Admin" });
             #endregion

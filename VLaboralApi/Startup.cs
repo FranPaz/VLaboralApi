@@ -52,7 +52,8 @@ namespace VLaboralApi
                 TokenEndpointPath = new PathString("/oauth/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat("http://localhost:32069")
+                AccessTokenFormat = new CustomJwtFormat("http://vlaboralapi.azurewebsites.net")
+                //AccessTokenFormat = new CustomJwtFormat("http://localhost:32069")
             };
 
             // OAuth 2.0 Bearer Access Token Generation
@@ -62,7 +63,8 @@ namespace VLaboralApi
         private void ConfigureOAuthTokenConsumption(IAppBuilder app)
         {
 
-            var issuer = "http://localhost:32069";
+            //var issuer = "http://localhost:32069";
+            var issuer = "http://vlaboralapi.azurewebsites.net"; // fpaz: azure
             string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
             byte[] audienceSecret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["as:AudienceSecret"]);
 

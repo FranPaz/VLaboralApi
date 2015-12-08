@@ -89,10 +89,16 @@ namespace VLaboralApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Ofertas.Add(oferta);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = oferta.Id }, oferta);
+            try
+            {
+                db.Ofertas.Add(oferta);
+                db.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }            
         }
 
         // DELETE: api/Ofertas/5
